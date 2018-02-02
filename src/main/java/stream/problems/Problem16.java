@@ -19,9 +19,11 @@ public class Problem16 {
     }
 
     private void xx(int base) {
-        String v15 = IntStream.range(0, base).mapToObj(i -> new BigInteger("2")).reduce(BigInteger.ONE, (x, y) -> (x.multiply(y))).toString();
+        String v15 = IntStream.range(0, base).mapToObj(i -> new BigInteger("2"))
+                .reduce(BigInteger.ONE, (x, y) -> (x.multiply(y))).toString();
         System.out.println(v15);
-        long longValue = Arrays.asList(v15.split("")).stream().map(s -> Long.parseLong(s)).reduce(0L, (x, y) -> (x + y))
+        long longValue = Arrays.asList(v15.split("")).stream().map(s -> Long.parseLong(s))
+                .reduce(0L, (x, y) -> (x + y))
                 .longValue();
         System.out.println(longValue);
     }
