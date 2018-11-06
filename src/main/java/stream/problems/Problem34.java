@@ -2,6 +2,7 @@ package stream.problems;
 
 import utils.Para;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,16 +29,33 @@ public class Problem34 {
         System.out.println(allFactorial);
 
 
-        IntStream.range(11, 900000)
+        final Long sum = IntStream.range(11, (int) (factorial(9) * 7))
                 .mapToObj(x -> new Para<Integer, List<Integer>>(x, toList(x, new ArrayList<Integer>())))
-                .map(p -> new Para<Long, Para<Long, List<Integer>>>((long)p.v1, new Para<Long, List<Integer>>(
+                .map(p -> new Para<Long, Para<Long, List<Integer>>>((long) p.v1, new Para<Long, List<Integer>>(
                         p.v2.stream()
-                        .map(i -> factorial(i))
-                        .reduce(0L, (a, b) -> a + b)
-                        .longValue(), p.v2)
+                                .map(i -> factorial(i))
+                                .reduce(0L, (a, b) -> a + b)
+                                .longValue(), p.v2)
                 ))
                 .filter(p -> p.v1.equals(p.v2.v1))
-                .forEach(System.out::println);
+//                .forEach(System.out::println);
+                .map(x -> x.v1)
+                .reduce(0L, (x, y) -> (x + y));
+        System.out.println(sum);
+
+//        IntStream.range(1, 10)
+//                .forEach(v ->{
+//                    System.out.println("Liczba " + v + "_cyforwa");
+//                    System.out.println("A: Min 10*" + v + " = "+((int)Math.pow(10,v-1)));
+//                    System.out.println("B: Max 10*" + v + " = "+((int)Math.pow(10,v)));
+//                    System.out.println("C: Min 1!+0!*" + (v-1) + " = "+v);
+//                    long max = factorial(9) * v;
+//                    System.out.println("D: Max 9!*" + (v) + " = "+ max);
+//                    int dlugoscMax = ("" + max).length();
+//                    System.out.println("" + v + " długos Max 9! " + dlugoscMax);
+//                    System.out.println("" +((dlugoscMax < v)?"Został przekroczony limit i dokładanie kolejnej cyfry spowoduje" +
+//                            " ze suma tymbardziej nie bedzie osiagalna A > D":""));
+//                });
     }
 
     private List<Integer> toList(int x, List<Integer> list) {
