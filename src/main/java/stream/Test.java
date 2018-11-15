@@ -6,6 +6,6 @@ public class Test {
 
     public static void main(String ... args) throws Exception {
         System.out.println("Eulera");
-        new Problem34().doIt();
+        new Problem43().doIt();
     }
 }

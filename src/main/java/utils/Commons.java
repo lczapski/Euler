@@ -27,6 +27,21 @@ public class Commons {
         return contain;
     }
 
+    public static boolean isPrime(Long x) {
+        return x >= 0 && (_isPrime(x));
+    }
+
+    public static boolean _isPrime(long it) {
+        long i = 2;
+        while(i < it) {
+            if (it % i == 0) {
+                return false;
+            }
+            i++;
+        }
+        return true ;
+    }
+
 //    public static List<Long> getPodzielniki(long it) {
 //        List<Long> contain = new ArrayList<>();
 //        long i = 2;
